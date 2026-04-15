@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    depends_on:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: panel
+      MYSQL_USER: ptero
+      MYSQL_PASSWORD: ptero
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
