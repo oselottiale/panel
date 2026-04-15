@@ -1,0 +1,32 @@
+{
+  "name": "Pterodactyl Panel Dev",
+  "image": "mcr.microsoft.com/devcontainers/php:8.1",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    },
+    "ghcr.io/devcontainers/features/mysql:1": {
+      "version": "8.0",
+      "mysqlDatabase": "panel",
+      "mysqlUser": "ptero",
+      "mysqlPassword": "ptero"
+    },
+    "ghcr.io/devcontainers/features/redis:1": {}
+  },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+
+  "forwardPorts": [8080, 3306, 6379],
+  "remoteUser": "vscode"
+}
